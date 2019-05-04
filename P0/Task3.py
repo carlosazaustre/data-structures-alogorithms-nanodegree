@@ -43,3 +43,66 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+def isBangaloreNumber(telephone_number):
+  if telephone_number[0:5] == "(080)":
+    return True
+
+def getAreaCode(telephone_number):
+  if telephone_number[0] == "(":
+    # it's a fixed line
+    count = 0
+    for number in telephone_number:
+      if number != ")":
+        count += 1
+      else:
+        break
+    return telephone_number[1:count]
+
+
+  elif telephone_number[0] == "7" or telephone_number[0] == "8" or telephone_number[0] == "9":
+    # it's a mobile number
+    return telephone_number[0:4]
+
+  elif telephone_number[0:3] == "140":
+    # it's a telemarketer
+    return telephone_number[0:3]
+
+def findAllAreaCodes(calls):
+  codes = []
+  for line in calls:
+    # Check if the calling one is from Bangalore
+    if isBangaloreNumber(line[0]):
+      # Get the area code from the receiving one
+      code = getAreaCode(line[1])
+      if code not in codes:
+        codes.append(code)
+  return sorted(codes)
+
+def printListOfCodes(codes):
+  print("The numbers called by people in Bangalore have codes:")
+  for code in codes:
+    print(code)
+
+def numberOfCallsFromAndToBangalore(calls):
+  matching_calls = 0
+  from_bangalore_calls = 0
+  for line in calls:
+    if isBangaloreNumber(line[0]):
+      from_bangalore_calls += 1
+      if isBangaloreNumber(line[1]):
+        matching_calls += 1
+  return matching_calls, from_bangalore_calls
+
+def printPercentageBangaloreCalls(number, total):
+  percentage = (float(number) / float(total)) * 100
+  percentage = round(percentage, 2)
+  print(str(percentage) + " percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
+
+
+# Part A
+codes = findAllAreaCodes(calls)
+printListOfCodes(codes)
+
+# Part B
+number, total = numberOfCallsFromAndToBangalore(calls)
+printPercentageBangaloreCalls(number, total)

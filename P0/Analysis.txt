@@ -1,0 +1,23 @@
+git- Task 0
+  O(3) ~= O(1)
+  Constant
+
+- Task 1
+  O(9072(4)+ 5213(4) + 1) ~= O(n + m) ~= O(2n) ~= O(n)
+  Linear
+  
+- Task 2
+  O(5213(2) + 1)  ~= O(n)
+  Linear
+
+- Task 3
+  - Part A
+    O(5213(2 + 7(12) + 1 + 2) + 5213) ~= O(2n) ~= O(n)
+    Linear
+  
+  - Part B
+    O(2 + 5213(2(2 + 1) + 1)+ 3) ~= O(n)
+    Linear
+
+- Task 4
+  O((4(4 + 9072(2) + 1)) + 9072(4) + 1 + (5213+9072)) ~= O(4n + 4n + 2n) ~= O(10n) ~= O(n)
