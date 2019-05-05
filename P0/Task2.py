@@ -31,16 +31,16 @@ def saveCall(phone, time, phone_list, time_list):
 def getMaxTime(time_list):
     max_time = 0
     for time in calls_time:
-    if time > max_time:
-        max_time = time
+        if time > max_time:
+            max_time = time
     return max_time
 
 calls_time = []
 calls_numbers = []
 
 for call in calls:
-    saveCall(call[0], call[3], calls_number, calls_time)
-    saveCall(call[1], call[3], calls_number, calls_time)
+    saveCall(call[0], call[3], calls_numbers, calls_time)
+    saveCall(call[1], call[3], calls_numbers, calls_time)
 
 max_time = getMaxTime(calls_time)
 index = calls_time.index(max_time)
