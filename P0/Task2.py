@@ -20,29 +20,29 @@ Print a message:
 September 2016.".
 """
 
+def saveCall(phone, time, phone_list, time_list):
+    if phone not in phone_list:
+        phone_list.append(phone)
+        time_list.append(int(time))
+    else:
+        index = phone_list.index(phone)
+        time_list[index] += int(time)
+
+def getMaxTime(time_list):
+    max_time = 0
+    for time in calls_time:
+    if time > max_time:
+        max_time = time
+    return max_time
+
 calls_time = []
 calls_numbers = []
 
 for call in calls:
-    if call[0] not in calls_numbers:
-        calls_numbers.append(call[0])
-        calls_time.append(int(call[3]))
-    else:
-        index = calls_numbers.index(call[0])
-        calls_time[index] += int(call[3])
+    saveCall(call[0], call[3], calls_number, calls_time)
+    saveCall(call[1], call[3], calls_number, calls_time)
 
-    if call[1] not in calls_numbers:
-        calls_numbers.append(call[0])
-        calls_time.append(int(call[3]))
-    else:
-        index = calls_numbers.index(call[1])
-        calls_time[index] += int(call[3])
-
-max_time = 0
-for time in calls_time:
-    if time > max_time:
-        max_time = time
-
+max_time = getMaxTime(calls_time)
 index = calls_time.index(max_time)
 
 print(str(calls_numbers[index]) + " spent the longest time, " + str(calls_time[index]) + " seconds, on the phone during September 2016")
