@@ -68,14 +68,13 @@ def getAreaCode(telephone_number):
     return telephone_number[0:3]
 
 def findAllAreaCodes(calls):
-  codes = []
+  codes = set([])
   for line in calls:
     # Check if the calling one is from Bangalore
     if isBangaloreNumber(line[0]):
       # Get the area code from the receiving one
       code = getAreaCode(line[1])
-      if code not in codes:
-        codes.append(code)
+      codes.add(code)
   return sorted(codes)
 
 def printListOfCodes(codes):
