@@ -19,17 +19,13 @@ Print a message:
 "There are <count> different telephone numbers in the records."
 """
 def countUniqueNumbers(texts, calls):
-    unique_numbers = []
+    unique_numbers = set([])
     for line in texts:
-        if line[0] not in unique_numbers:
-            unique_numbers.append(line[0])
-        if line[1] not in unique_numbers:
-            unique_numbers.append(line[1])
+        unique_numbers.add(line[0])
+        unique_numbers.add(line[1])
     for line in calls:
-        if line[0] not in unique_numbers:
-            unique_numbers.append(line[0])
-        if line[1] not in unique_numbers:
-            unique_numbers.append(line[1])
+        unique_numbers.add(line[0])
+        unique_numbers.add(line[1])
     return len(unique_numbers)
 
 print("There are "+ str(countUniqueNumbers(texts, calls)) +" different telephone numbers in the records.")
