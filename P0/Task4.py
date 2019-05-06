@@ -26,7 +26,7 @@ The list of numbers should be print out one per line in lexicographic order with
 """
 
 def getListOfNumbers(number_making_call, number_receiving_call, registry_list):
-    list_of_numbers = []
+    list_of_numbers = set([])
     position = None
 
     if number_making_call:
@@ -35,18 +35,17 @@ def getListOfNumbers(number_making_call, number_receiving_call, registry_list):
         position = 1
 
     for number in registry_list:
-        if number[position] not in list_of_numbers:
-            list_of_numbers.append(number[position])
+        list_of_numbers.add(number[position])
     
     return list_of_numbers
 
 def getPossibleTelemarketers(list_of_calls, list_of_texts):
     list_of_possible_telemarketers = []
 
-    list_of_numbers_making_calls = sorted(getListOfNumbers(True, False, list_of_calls))
-    list_of_numbers_receiving_calls = sorted(getListOfNumbers(False, True, list_of_calls))
-    list_of_numbers_sending_texts = sorted(getListOfNumbers(True, False, list_of_texts))
-    list_of_numbers_receiving_texts = sorted(getListOfNumbers(False, True, list_of_texts))
+    list_of_numbers_making_calls = getListOfNumbers(True, False, list_of_calls)
+    list_of_numbers_receiving_calls = getListOfNumbers(False, True, list_of_calls)
+    list_of_numbers_sending_texts = getListOfNumbers(True, False, list_of_texts)
+    list_of_numbers_receiving_texts = getListOfNumbers(False, True, list_of_texts)
 
     for number in list_of_numbers_making_calls:
         if number not in list_of_numbers_receiving_calls:
@@ -54,7 +53,7 @@ def getPossibleTelemarketers(list_of_calls, list_of_texts):
                 if number not in list_of_numbers_receiving_texts:
                     list_of_possible_telemarketers.append(number)
 
-    return list_of_possible_telemarketers
+    return sorted(list_of_possible_telemarketers)
 
 def printPossibleTelemarketers(list_of_numbers):
     print("These numbers could be telemarketers: ")
