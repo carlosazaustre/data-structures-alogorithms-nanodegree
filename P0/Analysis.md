@@ -17,7 +17,9 @@ The output depends of number of lines to read from the texts and calls csv files
 The out is **Linear**.
   
 ## Task 2
+```
 O(5213(2) + 1)  ~= O(n)
+```
 
 This code is splitted in 2 functions and a loop that iterates over there.
 the total number of operations dependes of the input, in this case the number of registers of calls csv file. (5213 in this example).
